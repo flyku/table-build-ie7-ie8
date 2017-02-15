@@ -109,5 +109,5 @@ var str = '<table padding="0" cellspacing="0" border="0">
 
 ###效果预览
 ```效果展示
-![image](look.jpg)
 ```
+![image](look.jpg)
