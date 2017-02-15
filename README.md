@@ -1,4 +1,7 @@
 #README.md
+#行列可选------可以根据行生成表格，也可以根据列生成表格。
+#需要在table（cellLists,false）传入布尔值
+#不传false，默认false以列生成表格，传入true时以行生成表格
 ###使用方法
 #引入js
 ```
