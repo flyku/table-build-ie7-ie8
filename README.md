@@ -114,7 +114,32 @@ var str = '<table padding="0" cellspacing="0" border="0">
 ###效果预览collook.jpg
 ![image](https://raw.githubusercontent.com/flyku/table-build-ie7-ie8/master/look.jpg)
 
-
+#celllists中支持计算的function  返回必须是数组。
+```
+        cell(function(){return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}, [{
+            html: '第二箭'
+        }]),
+```
+```
+var rowcellLists = [
+        cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], [{
+            html: '第一箭'
+        }]),
+        cell(function(){return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}, [{
+            html: '第二箭'
+        }]),
+        cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], [{
+            html: '第三箭'
+        }]),
+        cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], [{
+            html: '总计'
+        }]),
+        cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], [{
+            html: '得分',
+            rowSpan: 1
+        }])
+    ];
+```
 ###生成table
 ```ini
 var data = table(cellLists,true);
