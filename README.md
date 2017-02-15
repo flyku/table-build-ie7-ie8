@@ -108,4 +108,4 @@ var str = '<table padding="0" cellspacing="0" border="0">
 ```
 
 ###效果预览
-![image](https://raw.githubusercontent.com/flyku/table-build-ie7-ie8/master/look.jpg)
+![image](https://git.github.com/flyku/table-build-ie7-ie8/master/look.jpg)
