@@ -17,14 +17,14 @@
         }
     </style>
 <body>
-    <div id="table">
-        <table padding="0" cellspacing="0" border="0"><thead></thead><tbody><tr><td rowspan="3<td rowspan="undefined<td rowspan="3<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="2<td rowspan="2<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined</tr></tbody></table>
-    </div>
+    <div id="coltable"></div>
+    <div id="rowtable" style="margin-top:20px;"></div>
 </div>
 <script type="text/javascript" charset="utf-8" src="table.js"></script>
 <script type="text/javascript" charset="utf-8" src="underscore.js"></script>
 <script>
-    var cellLists = [
+//以列生成
+    var colcellLists = [
         cell(["1", "2", "3", "4", "5"].concat([{
             html: "加赛"
         }]), [{
@@ -95,10 +95,34 @@
             html: '总计'
         }])
     ];
-    var data = table(cellLists);
-    var str = '<table padding="0" cellspacing="0" border="0"><thead></thead><tbody><% for(var i=0;i<data.rows.length;i++){%><tr><% for(var j=0;j<data.rows[i].length;j++){%><td rowspan="<%= data.rows[i][j].rowSpan || 1 %>" colspan="<%= data.rows[i][j].colSpan || 1 %>" data-id="<%= data.rows[i][j].uniqId %>"><%= data.rows[i][j].html %></td><% }; %></tr><% }; %></tbody></table>';
-    var template = _.template(str);
-    document.getElementById("table").innerHTML = template(data);
+    var coldata = table(colcellLists,false);
+    var colstr = '<table padding="0" cellspacing="0" border="0"><thead></thead><tbody><% for(var i=0;i<coldata.rows.length;i++){%><tr><% for(var j=0;j<coldata.rows[i].length;j++){%><td rowspan="<%= coldata.rows[i][j].rowSpan || 1 %>" colspan="<%= coldata.rows[i][j].colSpan || 1 %>" data-id="<%= coldata.rows[i][j].uniqId %>"><%= coldata.rows[i][j].html %></td><% }; %></tr><% }; %></tbody></table>';
+    var coltemplate = _.template(colstr);
+    document.getElementById("coltable").innerHTML = coltemplate(coldata);
+//以行生成
+    var rowcellLists = [
+        cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], [{
+            html: '第一箭'
+        }]),
+        cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], [{
+            html: '第二箭'
+        }]),
+        cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], [{
+            html: '第三箭'
+        }]),
+        cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], [{
+            html: '总计'
+        }]),
+        cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], [{
+            html: '得分',
+            rowSpan: 1
+        }])
+    ];
+    var rowdata = table(rowcellLists,true);
+    var rowstr = '<table padding="0" cellspacing="0" border="0"><thead></thead><tbody><% for(var i=0;i<rowdata.rows.length;i++){%><tr><% for(var j=0;j<rowdata.rows[i].length;j++){%><td rowspan="<%= rowdata.rows[i][j].rowSpan || 1 %>" colspan="<%= rowdata.rows[i][j].colSpan || 1 %>" data-id="<%= rowdata.rows[i][j].uniqId %>"><%= rowdata.rows[i][j].html %></td><% }; %></tr><% }; %></tbody></table>';
+    var rowtemplate = _.template(rowstr);
+    document.getElementById("rowtable").innerHTML = rowtemplate(rowdata);
+
 </script>
 </body>
 </html>
