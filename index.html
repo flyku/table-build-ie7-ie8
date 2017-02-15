@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>table生成支持ie7.8,支持cmd amd commonjs</title>
+    <style>
+        table {
+            width: 500px;
+            border-collapse: collapse;
+        }
+        td {
+            border: solid 1px #ccc;
+            width: 80px;
+            height: 30px;
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+<body>
+    <div id="table">
+        <table padding="0" cellspacing="0" border="0"><thead></thead><tbody><tr><td rowspan="3<td rowspan="undefined<td rowspan="3<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="2<td rowspan="2<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined</tr><tr><td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined<td rowspan="undefined</tr></tbody></table>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8" src="table.js"></script>
+<script type="text/javascript" charset="utf-8" src="underscore.js"></script>
+<script>
+    var cellLists = [
+        cell(["1", "2", "3", "4", "5"].concat([{
+            html: "加赛"
+        }]), [{
+            html: '局',
+            rowSpan: 3
+        }]),
+        cell([1, 2, 3, 4, 5].concat([{
+            html: 10,
+            colSpan: 4
+        }]), [{
+            html: "flyku",
+            colSpan: 5
+        }].concat([{
+            html: "环数",
+            colSpan: 4
+        }]).concat([{
+            html: "第一箭"
+        }])),
+
+        cell([1, 2, 3, 4, 5], [{
+            html: '第二箭'
+        }]),
+        cell([1, 2, 3, 4, 5], [{
+            html: '第三箭'
+        }]),
+        cell([1, 2, 3, 4, 5], [{
+            html: '总计'
+        }]),
+        cell([1, 2, 3, 4, 5].concat([{
+            html: "加赛"
+        }]), [{
+            html: '得分',
+            rowSpan: 2
+        }]),
+
+        cell([1, 2, 3, 4, 5].concat([{
+            html: 222
+        }]), [{
+            html: '比分',
+            rowSpan: 3
+        }]),
+
+        cell([1, 2, 3, 4, 5].concat([{
+            html: 1
+        }]), [{
+            html: "flyku",
+            colSpan: 5
+        }].concat([{
+            html: "得分",
+            rowSpan: 2
+        }])),
+        cell([1, 2, 3, 4, 5].concat([{
+            html: 10,
+            colSpan: 4
+        }]), [{
+            html: '环数',
+            colSpan: 4
+        }].concat([{
+            html: "第一箭"
+        }])),
+        cell([1, 2, 3, 4, 5], [{
+            html: '第二箭'
+        }]),
+        cell([1, 2, 3, 4, 5], [{
+            html: '第三箭'
+        }]),
+        cell([1, 2, 3, 4, 5], [{
+            html: '总计'
+        }])
+    ];
+    var data = table(cellLists);
+    var str = '<table padding="0" cellspacing="0" border="0"><thead></thead><tbody><% for(var i=0;i<data.rows.length;i++){%><tr><% for(var j=0;j<data.rows[i].length;j++){%><td rowspan="<%= data.rows[i][j].rowSpan || 1 %>" colspan="<%= data.rows[i][j].colSpan || 1 %>" data-id="<%= data.rows[i][j].uniqId %>"><%= data.rows[i][j].html %></td><% }; %></tr><% }; %></tbody></table>';
+    var template = _.template(str);
+    document.getElementById("table").innerHTML = template(data);
+</script>
+</body>
+</html>
