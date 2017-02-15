@@ -106,3 +106,8 @@ var str = '<table padding="0" cellspacing="0" border="0">
     var template = _.template(str);
     document.getElementById("table").innerHTML = template(data);
 ```
+
+###效果预览
+```效果展示
+<img src="look.jpg" alt="">
+```
