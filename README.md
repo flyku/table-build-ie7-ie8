@@ -89,7 +89,20 @@ var data = table(cellLists);
 ```
 ###插入html（使用模板插入，underscore模板等等！）
 ```ini
-var str = '<table padding="0" cellspacing="0" border="0"><thead></thead><tbody><% for(var i=0;i<data.rows.length;i++){%><tr><% for(var j=0;j<data.rows[i].length;j++){%><td rowspan="<%= data.rows[i][j].rowSpan || 1 %>" colspan="<%= data.rows[i][j].colSpan || 1 %>" data-id="<%= data.rows[i][j].uniqId %>"><%= data.rows[i][j].html %></td><% }; %></tr><% }; %></tbody></table>';
+var str = '<table padding="0" cellspacing="0" border="0">
+    <thead></thead>
+    <tbody>
+        <% for(var i=0;i<data.rows.length;i++){%>
+            <tr>
+                <% for(var j=0;j<data.rows[i].length;j++){%>
+                    <td rowspan="<%= data.rows[i][j].rowSpan || 1 %>" colspan="<%= data.rows[i][j].colSpan || 1 %>" data-id="<%= data.rows[i][j].uniqId %>">
+                        <%= data.rows[i][j].html %>
+                    </td>
+                <% }; %>
+            </tr>
+        <% }; %>
+    </tbody>
+</table>';
     var template = _.template(str);
     document.getElementById("table").innerHTML = template(data);
 ```
