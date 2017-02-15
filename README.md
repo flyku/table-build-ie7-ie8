@@ -109,5 +109,5 @@ var str = '<table padding="0" cellspacing="0" border="0">
 
 ###效果预览
 ```效果展示
-![image](https://github.com/flyku/table-build-ie7-ie8/look.jpg)
+![image](http://github.com/flyku/table-build-ie7-ie8/look.jpg)
 ```
